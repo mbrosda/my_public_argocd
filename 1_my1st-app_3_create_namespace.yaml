@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: childapp-2
+  name: my1st-app
   namespace: argocd
+  finalizers: []
 spec:
   destination:
     name: in-cluster
     namespace: broesel
   source:
-    path: xxx
+    path: simple_resources
     repoURL: https://github.com/mbrosda/my_public_argocd.git
     targetRevision: HEAD
   sources: []
   project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    automated: null
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: repo-via-ssh
+  namespace: argocd
+stringData:
+  name: some_name
+  project: default
+  type: git
+  url: git@github.com:mbrosda/my_public_argocd.git
+#data:
+type: Opaque

@@ -1,0 +1,29 @@
+# create key with
+#    ssh-keygen -b 4096 -t rsa -f ../mydemokey -N '' -C DEMOKEY
+# then
+#    base64 -w0 ../mydemokey; echo
+# add your PRIVATE key to your profile, e.g.
+#    https://github.com/settings/keys
+
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    managed-by: argocd.argoproj.io
+  labels:
+    argocd.argoproj.io/secret-type: repository
+  name: repo-via-ssh
+  namespace: argocd
+stringData:
+  #insecure: "true"
+  name: some_name
+  project: default
+  type: git
+  url: git@github.com:mbrosda/my_public_argocd.git
+  #sshPrivateKey: |
+  #  -----BEGIN OPENSSH PRIVATE KEY-----
+  #  ...
+  #  -----END OPENSSH PRIVATE KEY-----
+data:
+  sshPrivateKey: LS0tL...
+type: Opaque
