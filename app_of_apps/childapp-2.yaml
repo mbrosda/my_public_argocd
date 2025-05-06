@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: childapp-1
+  name: childapp-2
   finalizers: []
 spec:
   destination:
